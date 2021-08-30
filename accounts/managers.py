@@ -1,8 +1,16 @@
+"""Contains the managers of accounts app."""
+
+# django
 from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
+    """Inherits from BaseUserManager for creating CustomUser instance."""
+
     def create_user(self, username, email, password, role, **extra_fields):
+        """
+        Creates and saves a user.
+        """
         extra_fields.setdefault("is_active", True)
 
         email = self.normalize_email(email)
@@ -12,6 +20,9 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password, **extra_fields):
+        """
+        Creates and saves a superuser.
+        """
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("role", 1)

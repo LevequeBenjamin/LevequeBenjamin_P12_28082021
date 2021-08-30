@@ -9,9 +9,7 @@ from accounts.managers import UserManager
 
 
 class User(AbstractUser):
-    """
-    Docstrings.
-    """
+    """This is a class allowing to create a User."""
 
     # These fields tie to the roles!
     MANAGEMENT = 1

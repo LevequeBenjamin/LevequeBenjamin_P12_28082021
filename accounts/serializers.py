@@ -1,15 +1,18 @@
+"""Contains the serializers of accounts app."""
+
+# rest_framework
 from rest_framework import serializers
 
+# models
 from accounts.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     """
-    Docstrings.
+    Allows to serialize or deserialize the user according
+    to the verb of the request.
     """
     class Meta:
-        """
-        Docstrings.
-        """
+        """Meta options."""
         model = User
-        fields = ("id", "username", "role", "password")
+        fields = ("id", "username", "email", "first_name", "last_name", "role")
