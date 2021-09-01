@@ -12,7 +12,7 @@ class Client(models.Model):
     """This is a class allowing to create a Client."""
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     phone = models.CharField(max_length=10)
     mobile = models.CharField(max_length=10)
     company_name = models.CharField(max_length=25)
@@ -26,4 +26,4 @@ class Client(models.Model):
 
     def __str__(self):
         """Overrides method in Model."""
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.email}"

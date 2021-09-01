@@ -9,7 +9,7 @@ class IsSales(BasePermission):
     """
 
     # Overrides method in BasePermission
-    def has_permission(self, request, view):
+    def has_object_permission(self, request, view, obj):
         """
         The instance must have an author attribute and be equal to the authenticated user.
         """
@@ -17,6 +17,8 @@ class IsSales(BasePermission):
             return True
         if request.user.is_superuser:
             return True
+        if request.method in ['PUT', 'DELETE'] and request.user != obj.sales_contact:
+            return False
         return request.user.role == 2
 
 

@@ -23,8 +23,7 @@ class ContractListCreateView(ListCreateAPIView):
         Override of the perform_create method to add the author.
         """
         client = get_object_or_404(Client, pk=self.request.data.get("client"))
-        sales_contact = get_object_or_404(User, pk=self.request.data.get("sales_contact"))
-        serializer.save(client=client, sales_contact=sales_contact)
+        serializer.save(client=client, sales_contact=self.request.user)
 
 
 class ContractRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
@@ -36,11 +35,3 @@ class ContractRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     serializer_class = ContractSerializer
     # A user must be authenticated
     permission_classes = [IsAuthenticated, IsSales]
-
-    # Overrides method in UpdateModelMixin.
-    def perform_update(self, serializer):
-        """
-        Override of the perform_create method to add the author.
-        """
-        sales_contact = get_object_or_404(User, pk=self.request.data.get("sales_contact"))
-        serializer.save(sales_contact=sales_contact)
