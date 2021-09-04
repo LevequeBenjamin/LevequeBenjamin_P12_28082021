@@ -22,6 +22,7 @@ class Client(models.Model):
         to=User,
         on_delete=models.SET_NULL,
         null=True,
+        limit_choices_to={'role': 2}
     )
 
     def __str__(self):

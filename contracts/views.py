@@ -1,9 +1,17 @@
+"""Contains the views of contracts app."""
+
+# rest_framework
 from rest_framework.generics import ListCreateAPIView, get_object_or_404, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from accounts.models import User
-from accounts.permissions import IsSales
+# permissions
+from accounts.permissions import IsClientContact
+
+# models
 from clients.models import Client
+from contracts.models import Contract
+
+# serializers
 from contracts.serializers import ContractSerializer
 
 
@@ -13,9 +21,10 @@ class ContractListCreateView(ListCreateAPIView):
     """
 
     # Overrides attribute in GenericAPIView.
+    queryset = Contract.objects.all()
     serializer_class = ContractSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsSales]
+    permission_classes = [IsAuthenticated, IsClientContact]
 
     # Overrides method in CreateModelMixin.
     def perform_create(self, serializer):
@@ -32,6 +41,7 @@ class ContractRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     """
 
     # Overrides attributes in GenerateAPIView
+    queryset = Contract.objects.all()
     serializer_class = ContractSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsSales]
+    permission_classes = [IsAuthenticated, IsClientContact]

@@ -1,15 +1,17 @@
-"""Contains the views of client app."""
+"""Contains the views of clients app."""
 
 # rest_framework
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404
-
-# serializers
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from accounts.models import User
-from accounts.permissions import IsSales
-from clients.models import Client
+# serializers
 from clients.serializers import ClientSerializer
+
+# models
+from clients.models import Client
+
+# permissions
+from accounts.permissions import IsSales
 
 
 class ClientListCreateView(ListCreateAPIView):

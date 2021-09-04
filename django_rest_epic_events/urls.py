@@ -23,4 +23,8 @@ urlpatterns = [
     path('api/', include("accounts.urls")),
     # clients
     path('api/', include("clients.urls")),
+    # contracts
+    path('api/', include("contracts.urls")),
+    # events
+    path('api/', include("events.urls")),
 ]

@@ -4,7 +4,7 @@
 from django.urls import path
 
 # views
-from event.views import EventListCreateView, EventRetrieveUpdateDestroyView
+from events.views import EventListCreateView, EventRetrieveUpdateDestroyView
 
 urlpatterns = [
     # GET, POST

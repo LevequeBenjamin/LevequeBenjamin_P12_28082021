@@ -10,11 +10,15 @@ from clients.models import Client
 
 class Contract(models.Model):
     """This is a class allowing to create a Contract."""
-    client = models.ForeignKey(to=Client, on_delete=models.CASCADE)
+    client = models.ForeignKey(
+        to=Client,
+        on_delete=models.CASCADE,
+    )
     sales_contact = models.ForeignKey(
         to=User,
         on_delete=models.SET_NULL,
         null=True,
+        limit_choices_to={'role': 2}
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

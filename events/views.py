@@ -1,10 +1,19 @@
+"""Contains the views of events app."""
+
+# rest_framework
 from rest_framework.generics import ListCreateAPIView, get_object_or_404, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
+# models
 from accounts.models import User
-from accounts.permissions import IsSales, IsSupport
 from clients.models import Client
 from contracts.models import Contract
+
+# permissions
+from accounts.permissions import IsSupport, IsClientContact
+
+# serializers
+from events.models import Event
 from events.serializers import EventSerializer
 
 
@@ -14,9 +23,10 @@ class EventListCreateView(ListCreateAPIView):
     """
 
     # Overrides attribute in GenericAPIView.
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsSales]
+    permission_classes = [IsAuthenticated, IsClientContact]
 
     # Overrides method in CreateModelMixin.
     def perform_create(self, serializer):
@@ -35,14 +45,7 @@ class EventRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     """
 
     # Overrides attributes in GenerateAPIView
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsSales, IsSupport]
-
-    # Overrides method in UpdateModelMixin.
-    def perform_update(self, serializer):
-        """
-        Override of the perform_create method to add the author.
-        """
-        support_contact = get_object_or_404(User, pk=self.request.data.get("support_contact"))
-        serializer.save(support_contact=support_contact)
+    permission_classes = [IsAuthenticated, IsSupport]
