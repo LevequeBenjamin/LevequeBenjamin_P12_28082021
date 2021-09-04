@@ -1,7 +1,8 @@
 """Contains the views of contracts app."""
 
 # rest_framework
-from rest_framework.generics import ListCreateAPIView, get_object_or_404, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, get_object_or_404,\
+    RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 
 # permissions
@@ -26,11 +27,8 @@ class ContractListCreateView(ListCreateAPIView):
     # A user must be authenticated
     permission_classes = [IsAuthenticated, IsClientContact]
 
-    # Overrides method in CreateModelMixin.
     def perform_create(self, serializer):
-        """
-        Override of the perform_create method to add the author.
-        """
+        """Overrides method in CreateModelMixin."""
         client = get_object_or_404(Client, pk=self.request.data.get("client"))
         serializer.save(client=client, sales_contact=self.request.user)
 

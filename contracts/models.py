@@ -1,4 +1,4 @@
-"""Contains the models of client app."""
+"""Contains the models of contracts app."""
 
 # django
 from django.db import models

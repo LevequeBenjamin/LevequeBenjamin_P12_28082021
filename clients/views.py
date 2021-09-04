@@ -25,11 +25,8 @@ class ClientListCreateView(ListCreateAPIView):
     # A user must be authenticated
     permission_classes = [IsAuthenticated, IsSales]
 
-    # Overrides method in CreateModelMixin.
     def perform_create(self, serializer):
-        """
-        Override of the perform_create method to add the author.
-        """
+        """Overrides method in CreateModelMixin."""
         serializer.save(sales_contact=self.request.user)
 
 

@@ -1,8 +1,13 @@
-from django.contrib.auth.models import AbstractUser
+"""
+Contains class User which will allow us to manage the relational
+databases of the accounts application.
+"""
 
-# Create your models here.
+# django
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+# managers
 from accounts.managers import UserManager
 
 
@@ -25,8 +30,6 @@ class User(AbstractUser):
     object = UserManager()
 
     class Meta:
-        """
-        Docstrings.
-        """
+        """Meta options."""
         verbose_name = 'user'
         verbose_name_plural = 'users'

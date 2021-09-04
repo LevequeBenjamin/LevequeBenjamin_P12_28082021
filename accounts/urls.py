@@ -1,7 +1,7 @@
 """Contains the urls of accounts app."""
 
 # django
-from django.urls import path, include
+from django.urls import path
 
 # rest_framework
 from rest_framework_simplejwt import views as jwt_views

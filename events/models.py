@@ -1,11 +1,16 @@
+"""Contains the models of events app."""
+
+# django
 from django.db import models
 
+# models
 from accounts.models import User
 from clients.models import Client
 from contracts.models import Contract
 
 
 class Event(models.Model):
+    """This is a class allowing to create a Event."""
     client = models.ForeignKey(to=Client, on_delete=models.CASCADE)
     contract = models.ForeignKey(to=Contract, on_delete=models.CASCADE)
     support_contact = models.ForeignKey(
@@ -22,4 +27,5 @@ class Event(models.Model):
     notes = models.TextField()
 
     def __str__(self):
+        """Overrides method in Model."""
         return f"{self.client} -  {self.created_at.strftime('%d/%m/%Y - %H:%M:%S')}"

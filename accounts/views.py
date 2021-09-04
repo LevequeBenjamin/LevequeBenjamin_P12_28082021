@@ -2,10 +2,9 @@
 
 # rest_framework
 from rest_framework.generics import ListAPIView
-
-# models
 from rest_framework.permissions import IsAuthenticated
 
+# models
 from accounts.models import User
 
 # serializers

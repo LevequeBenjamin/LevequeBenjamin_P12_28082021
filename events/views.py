@@ -19,20 +19,17 @@ from events.serializers import EventSerializer
 
 class EventListCreateView(ListCreateAPIView):
     """
-    Concrete view for listing a queryset or creating a Contract instance.
+    Concrete view for listing a queryset or creating a Event instance.
     """
 
-    # Overrides attribute in GenericAPIView.
+    # Overrides attributes in GenericAPIView.
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     # A user must be authenticated
     permission_classes = [IsAuthenticated, IsClientContact]
 
-    # Overrides method in CreateModelMixin.
     def perform_create(self, serializer):
-        """
-        Override of the perform_create method to add the author.
-        """
+        """Overrides method in CreateModelMixin."""
         client = get_object_or_404(Client, pk=self.request.data.get("client"))
         contract = get_object_or_404(Contract, pk=self.request.data.get("contract"))
         support_contact = get_object_or_404(User, pk=self.request.data.get("support_contact"))
