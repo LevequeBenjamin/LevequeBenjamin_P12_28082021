@@ -7,7 +7,7 @@ from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
 # views
-from accounts.views import UserListView
+from accounts.views import UserListView, UserRetrieveView
 
 urlpatterns = [
     # POST
@@ -16,4 +16,6 @@ urlpatterns = [
     path('refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     # GET
     path('users/', UserListView.as_view(), name='users'),
+    # GET
+    path('users/<int:pk>/', UserRetrieveView.as_view(), name='user'),
 ]
