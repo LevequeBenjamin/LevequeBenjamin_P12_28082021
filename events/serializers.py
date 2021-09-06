@@ -27,6 +27,7 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = (
             "id",
+            "title",
             "client",
             "contract",
             "event_date",

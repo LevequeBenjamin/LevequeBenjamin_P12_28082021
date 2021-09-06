@@ -1,0 +1,20 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+    <h1>Epic Events | Administration</h1>
+{% endblock %}
+
+{% block extrastyle %}
+    <style>
+        #header {
+            background-color: #1e1e2d;
+        }
+        #branding h1 {
+            color: white;
+            font-size: 1.5rem;
+            text-transform:capitalize;
+            font-weight: bold;
+        }
+    </style>
+{% endblock %}

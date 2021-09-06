@@ -15,16 +15,26 @@ class ContractForm(forms.ModelForm):
         """Meta options."""
         model = Contract
         fields = (
-            'client', 'sales_contact', 'amount', 'payment_due_date', 'is_finished', 'is_paid'
+            'title', 'client', 'amount', 'payment_due_date', 'is_finished', 'is_paid'
         )
 
+    def save(self, commit=True):
+        """Overrides method in BaseModelForm."""
+        contract = super().save(commit=False)
+        contract.sales_contact = self.cleaned_data['client'].sales_contact
+        if commit:
+            contract.save()
+        return contract
 
+
+@admin.register(Contract)
 class ContractAdmin(admin.ModelAdmin):
     """Overrides attributes in BaseModelAdmin."""
     form = ContractForm
     list_display = (
-        "id", 'client', 'sales_contact', 'amount', 'payment_due_date', 'is_finished', 'is_paid'
+        "id", 'title', 'client', 'sales_contact', 'amount', 'payment_due_date', 'is_finished', 'is_paid'
     )
-
-
-admin.site.register(Contract, ContractAdmin)
+    search_fields = ('title', )
+    list_filter = ('client', 'sales_contact', 'is_finished', 'is_paid')
+    autocomplete_fields = ('client', 'sales_contact',)
+    list_per_page = 25

@@ -27,10 +27,11 @@ class UserForm(forms.ModelForm):
         return user
 
 
+@admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     """Overrides attributes in BaseModelAdmin."""
     form = UserForm
     list_display = ("id", "username", "email", "role", "is_staff")
-
-
-admin.site.register(User, UserAdmin)
+    search_fields = ('username', 'email')
+    list_filter = ('role',)
+    list_per_page = 25

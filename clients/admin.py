@@ -19,6 +19,7 @@ class ClientForm(forms.ModelForm):
         )
 
 
+@admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
     """Overrides attributes in BaseModelAdmin."""
     form = ClientForm
@@ -26,5 +27,9 @@ class ClientAdmin(admin.ModelAdmin):
         "id", 'first_name', 'last_name', 'email', 'phone', 'mobile', 'company_name', 'sales_contact'
     )
 
-
-admin.site.register(Client, ClientAdmin)
+    search_fields = (
+        'first_name', 'last_name', 'email', 'company_name'
+    )
+    list_filter = ('sales_contact',)
+    autocomplete_fields = ('sales_contact',)
+    list_per_page = 25

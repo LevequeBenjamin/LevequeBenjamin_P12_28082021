@@ -11,7 +11,7 @@ from clients.serializers import ClientSerializer
 from clients.models import Client
 
 # permissions
-from accounts.permissions import IsSales
+from accounts.permissions import IsSales, IsSalesRetrieveUpdateDestroy
 
 
 class ClientListCreateView(ListCreateAPIView):
@@ -39,4 +39,4 @@ class ClientRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsSales]
+    permission_classes = [IsAuthenticated, IsSalesRetrieveUpdateDestroy]

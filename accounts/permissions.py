@@ -21,6 +21,10 @@ class IsSales(BasePermission):
             return True
         return request.user.role == 2
 
+
+class IsSalesRetrieveUpdateDestroy(BasePermission):
+    """Verification of global authorizations for the sales team."""
+
     def has_object_permission(self, request, view, obj):
         """Overrides method in BasePermission."""
         # Return true if it's a get method and the user is admin.
@@ -45,6 +49,10 @@ class IsClientContact(BasePermission):
             return True
         client = get_object_or_404(Client, pk=request.data.get("client"))
         return request.user == client.sales_contact
+
+
+class IsClientContactRetrieveUpdateDestroy(BasePermission):
+    """Verification of global authorizations for the client contact."""
 
     def has_object_permission(self, request, view, obj):
         """Overrides method in BasePermission."""

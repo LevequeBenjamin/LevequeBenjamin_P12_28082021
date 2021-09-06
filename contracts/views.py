@@ -6,7 +6,7 @@ from rest_framework.generics import ListCreateAPIView, get_object_or_404,\
 from rest_framework.permissions import IsAuthenticated
 
 # permissions
-from accounts.permissions import IsClientContact
+from accounts.permissions import IsClientContact, IsClientContactRetrieveUpdateDestroy
 
 # models
 from clients.models import Client
@@ -42,4 +42,4 @@ class ContractRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
     queryset = Contract.objects.all()
     serializer_class = ContractSerializer
     # A user must be authenticated
-    permission_classes = [IsAuthenticated, IsClientContact]
+    permission_classes = [IsAuthenticated, IsClientContactRetrieveUpdateDestroy]
