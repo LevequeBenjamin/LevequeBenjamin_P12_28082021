@@ -26,6 +26,7 @@ class UserTest(APITestCase, URLPatternsTestCase):
             username='admin',
             email='admin@test.com',
             password='Admin74940',
+            role=1,
         )
 
         self.user_sales = User.objects.create_user(
@@ -62,7 +63,6 @@ class UserTest(APITestCase, URLPatternsTestCase):
             'password': 'Foo74940'
         }
         response = self.client.post(url, data)
-        response_data = json.loads(response.content)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_list_all_users(self):
