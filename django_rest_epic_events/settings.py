@@ -122,7 +122,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -146,26 +146,12 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-        # 'rest_framework.authentication.BasicAuthentication'
     ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
-# Configure the JWT settings
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
-    # 'ROTATE_REFRESH_TOKENS': True,
-    # 'BLACKLIST_AFTER_ROTATION': False,
-    # 'ALGORITHM': 'HS256',
-    # 'SIGNING_KEY': SECRET_KEY,
-    # 'VERIFYING_KEY': None,
-    # 'AUTH_HEADER_TYPES': ('JWT',),
-    # 'USER_ID_FIELD': 'id',
-    # 'USER_ID_CLAIM': 'user_id',
-    # 'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    # 'TOKEN_TYPE_CLAIM': 'token_type',
-}
+# ERRORS JSON
+handler500 = 'rest_framework.exceptions.server_error'
+handler400 = 'rest_framework.exceptions.bad_request'
 
 SITE_ID = 1

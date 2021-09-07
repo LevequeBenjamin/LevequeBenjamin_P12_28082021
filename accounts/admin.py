@@ -10,6 +10,7 @@ from accounts.models import User
 
 class UserForm(forms.ModelForm):
     """UserForm inherits from ModelForm for creating User form."""
+
     class Meta:
         """Meta options."""
         model = User

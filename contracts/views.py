@@ -1,7 +1,7 @@
 """Contains the views of contracts app."""
 
 # rest_framework
-from rest_framework.generics import ListCreateAPIView, get_object_or_404,\
+from rest_framework.generics import ListCreateAPIView, get_object_or_404, \
     RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 

@@ -247,7 +247,7 @@ class ClientTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_update_client_no_sales_contact(self):
-        """Test if a no sales contact can't update client."""
+        """Test if not sales contact can't update a client."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}
@@ -313,7 +313,7 @@ class ClientTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_delete_client_no_sales_contact(self):
-        """Test if a no sales contact can't update client."""
+        """Test if not sales contact can't delete a client."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}

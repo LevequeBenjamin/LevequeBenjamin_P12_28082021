@@ -27,6 +27,7 @@ class EventTest(APITestCase, URLPatternsTestCase):
     ]
 
     def setUp(self):
+        """Overrides method in TestCase."""
         self.admin = User.objects.create_superuser(
             username='admin',
             email='admin@test.com',
@@ -164,7 +165,7 @@ class EventTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_create_event_no_client_sales_contact(self):
-        """Test if not client sales contact can create a event."""
+        """Test if not client sales contact can't create a event."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}
@@ -279,8 +280,8 @@ class EventTest(APITestCase, URLPatternsTestCase):
         response = client.put(reverse('update_destroy_retrieve_event', kwargs={'pk': self.event.id}), data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-    def test_access_denied_update_contract_sales(self):
-        """Test if a sales user can update a contract."""
+    def test_access_denied_update_event_sales(self):
+        """Test if a sales user can't update a event."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales', 'password': 'Sales74940'}
@@ -303,7 +304,7 @@ class EventTest(APITestCase, URLPatternsTestCase):
         response = client.put(reverse('update_destroy_retrieve_event', kwargs={'pk': self.event.id}), data)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_access_denied_update_client_no_support_contact(self):
+    def test_access_denied_update_event_no_support_contact(self):
         """Test if not support contact can update a event."""
         # Setup the token
         url = reverse('login')
@@ -328,7 +329,7 @@ class EventTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_delete_event(self):
-        """Test if a support contact can delete a contract."""
+        """Test if a support contact can delete a event."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'support', 'password': 'Support74940'}
@@ -352,7 +353,7 @@ class EventTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_access_denied_delete_event_sales(self):
-        """Test if a sales user can delete a contract."""
+        """Test if a sales user can delete a event."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales', 'password': 'Sales74940'}

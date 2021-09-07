@@ -134,7 +134,7 @@ class ContractTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_create_contract_no_client_sales_contact(self):
-        """Test if not sales contact can create a contract."""
+        """Test if not sales contact can't create a contract."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}
@@ -271,7 +271,7 @@ class ContractTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_update_client_no_sales_contact(self):
-        """Test if a no sales contact can't update contract."""
+        """Test if not sales contact can't update a contract."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}
@@ -336,7 +336,7 @@ class ContractTest(APITestCase, URLPatternsTestCase):
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_access_denied_delete_contract_no_sales_contact(self):
-        """Test if a no sales contact can't update contract."""
+        """Test if not sales contact can't delete a contract."""
         # Setup the token
         url = reverse('login')
         data = {'username': 'sales2', 'password': 'Sales274940'}

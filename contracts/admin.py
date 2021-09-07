@@ -34,7 +34,7 @@ class ContractAdmin(admin.ModelAdmin):
     list_display = (
         "id", 'title', 'client', 'sales_contact', 'amount', 'payment_due_date', 'is_finished', 'is_paid'
     )
-    search_fields = ('title', )
+    search_fields = ('title',)
     list_filter = ('client', 'sales_contact', 'is_finished', 'is_paid')
     autocomplete_fields = ('client', 'sales_contact',)
     list_per_page = 25

@@ -10,6 +10,7 @@ from events.models import Event
 
 class EventForm(forms.ModelForm):
     """EventForm inherits from ModelForm for creating Event form."""
+
     class Meta:
         """Meta options."""
         model = Event

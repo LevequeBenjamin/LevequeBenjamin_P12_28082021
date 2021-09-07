@@ -90,7 +90,7 @@ GRANT ALL PRIVILEGES ON DATABASE epic_events TO epic_events;
 Créez un super utilisateur :
 
 ```
-python manage.py createsuperuser
+$ python manage.py createsuperuser
 ```
 
 Pour lancer l'application utilisez la commande:
@@ -104,7 +104,6 @@ $ python manage.py runserver
 #### 1. Testez l'api avec la commande :
 ```
 $ python manage.py test
-
 ```
 #### 2. Générez un rapport de couverture avec les commandes:
 ```

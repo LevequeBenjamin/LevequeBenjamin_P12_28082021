@@ -22,6 +22,7 @@ class UserTest(APITestCase, URLPatternsTestCase):
     ]
 
     def setUp(self):
+        """Overrides method in TestCase."""
         self.admin = User.objects.create_superuser(
             username='admin',
             email='admin@test.com',
