@@ -72,7 +72,7 @@ $ pip install -r requirements.txt
 
 #### 5. Créez une base de données POSTGRESQL :
 Assurez-vous que postgreSQL est disponible sur votre système.
-Vous trouverez une documentation détaillée de Postf=greSQL en suivant ce [lien](https://www.postgresql.org/).
+Vous trouverez une documentation détaillée de PostgreSQL en suivant ce [lien](https://www.postgresql.org/).
 
 Dans psql CLI, tapez (si vous modifiez la valeur ci-dessous, modifiez également .env):
 ```
@@ -111,5 +111,5 @@ $ coverage run --source='.' manage.py test accounts clients contracts events
 $ coverage report
 ```
 
-Puis rendez-vous sur `127.0.0.1:8000/management` et connectez vous avec les identifiants de votre super utilisateur.
+Puis rendez-vous sur `127.0.0.1:8000/management/` et connectez vous avec les identifiants de votre super utilisateur.
 Pour l'utilisation des points de terminaisons de l'api veuillez suivre la [documentation Postman](https://documenter.getpostman.com/view/14483216/U16gPnFv).
